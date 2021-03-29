@@ -1,14 +1,16 @@
 # `hkvb/elastic` Image Library
 
-The repository of stacks and modules build from the official ElasticSearch images.
-
-These are all the ElasticSearch images that follow the ElasticSearch version.
+The ElasticSearch image library.
 
 ## APM Server
 
-### hkvb/elastic/apm_server
+### hkvb/elastic/apm
 
-The APM Server base stack and module.
+The base stack of the APM Server.
+
+### hkvb/elastic/apm/traefik
+
+The base stack of the APM Server.
 
 ## ElasticSearch Beats
 
@@ -86,20 +88,6 @@ Basic REST client for ElasticSearch.
 
 Implements a standard url mounted ElasticSearch stack and module configured for Traefik reverse proxy.
 
-## ElasticSearch Based Stacks
+## Version
 
-### hkvb/elastic/stacks/eka
-
-The ElasticSearch - Kibana - APM Server base stack and module.
-
-### hkvb/elastic/stacks/eka/traefik
-
-The ElasticSearch - Kibana - APM Server base stack and module configured for Traefik reverse proxy.
-
-### hkvb/elastic/stacks/ekg
-
-The ElasticSearch - Kibana - Grafana base stack and module.
-
-### hkvb/elastic/stacks/eka/traefik
-
-The ElasticSearch - Kibana - Grafana base stack and module configured for Traefik reverse proxy.
+7.9.2
