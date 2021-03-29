@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# START CONFIGURATION
+DOLLAR='$'
+export VCW_MODULE_PACKAGES="\
+ingest_journal:hkvb/elastic/journalbeat/sasl"
+# END CONFIGURATION
+
+# START OTHER SETTINGS
+export INGEST_JOURNAL_MODULE_HOST_JOURNALPATH="/var/log/journal"
+export INGEST_JOURNAL_MODULE_JOURNALTOPIC="swarm_journal_raw"
+# END OTHER SETTINGS

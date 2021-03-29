@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+prefix="hkvb_elastic_metricbeat_overlay__$1"
+prefix="hkvb_elastic_metricbeat_overlay__$1"
+
+if [[ "hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_config
+fi
+
+if [[ "hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_volume
+fi
+
+if [[ "hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/source -v hkvb_elastic_metricbeat_overlay__metrics_node_metricbeat_config:/vcw/pwd ${VCW_REGISTRY}hkvb/controlplane.vcw console cmd cp -r /source/hkvb/elastic/metricbeat/overlay/_module/volumes/metrics_node_metricbeat_config/* /vcw/pwd
+fi
