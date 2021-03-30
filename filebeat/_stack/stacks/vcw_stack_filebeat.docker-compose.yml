@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/elastic/filebeat
+  filebeat:
+    image: ${VCW_REGISTRY}hkvb/elastic.filebeat:7.11.2
+    environment: ['ES_FILEBEAT_FILEPATHS=${VCW_STACK_FILEBEAT_ENVIRONMENT_FILEPATHS}','ES_FILEBEAT_LOGGING_LEVEL=${VCW_STACK_FILEBEAT_ENVIRONMENT_LOGGING_LEVEL}']
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/usr/share/filebeat/data','${VCW_STACK_GLOBAL_STACKPREFIX}_config_volume:/vcw/pwd','${VCW_STACK_GLOBAL_STACKPREFIX}_ingest_volume:/vcw/ingest','/etc:/hostfs/etc:ro'${VCW_STACK_FILEBEAT_ENVIRONMENT_FILEPATHS_MAPPING}]
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${VCW_STACK_FILEBEAT_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${VCW_STACK_FILEBEAT_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${VCW_STACK_FILEBEAT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${VCW_STACK_FILEBEAT_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/elastic/filebeat
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_config_volume: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_ingest_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

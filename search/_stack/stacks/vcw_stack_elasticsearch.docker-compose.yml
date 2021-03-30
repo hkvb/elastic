@@ -4,10 +4,10 @@ services:
 
 # START SERVICE hkvb/elastic/search
   elasticsearch:
-    image: ${VCW_REGISTRY}elasticsearch:7.9.2
+    image: ${VCW_REGISTRY}elasticsearch:7.11.2
     environment: ['cluster.name=elasticsearch', 'bootstrap.memory_lock=true', ES_JAVA_OPTS=-Xms${VCW_STACK_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY} -Xmx${VCW_STACK_ELASTICSEARCH_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}, 'discovery.type=single-node']
     command: []
-    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume:/usr/share/elasticsearch/data']
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/usr/share/elasticsearch/data']
     ports: [${VCW_STACK_ELASTICSEARCH_PORTS_ELASTICSEARCH_PORT}:9200]
     networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
@@ -21,5 +21,5 @@ ${VCW_STACK_ELASTICSEARCH_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/elastic/search
 
 networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
-volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_elasticsearch_volume: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }}
 ${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

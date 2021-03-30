@@ -4,7 +4,7 @@ services:
 
 # START SERVICE hkvb/elastic/kibana
   kibana:
-    image: ${VCW_REGISTRY}kibana:7.9.2
+    image: ${VCW_REGISTRY}kibana:7.11.2
     environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=${VCW_STACK_KIBANA_ENVIRONMENT_KIBANA_SERVER_BASEPATH}', 'XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=false', 'LOGGING_VERBOSE=${VCW_STACK_KIBANA_ENVIRONMENT_KIBANA_LOGGING_VERBOSE}']
     command: []
     volumes: []

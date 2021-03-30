@@ -1,0 +1,54 @@
+filebeat.inputs:
+- type: log
+  paths: "${ES_FILEBEAT_FILEPATHS:[]}"
+
+#- type: kafka
+#  hosts: "kafka:9092"
+#  topics: "filebeat"
+#  group_id: "filebeat.kafka"
+#  initial_offset: cursor
+#  ssl.enabled: false
+#  username: ""
+#  password: ""
+#  processors:
+#  - decode_json_fields
+#    fields: [message]
+#    target: json
+
+output.console:
+  enabled: false
+  pretty: false
+
+output.elasticsearch:
+  enabled: true
+  ssl.enabled: false
+  hosts: "elasticsearch:9200"
+  index: "filebeat"
+  username: ""
+  password: ""
+
+setup.template.name: "filebeat"
+setup.template.pattern: "filebeat"
+
+setup.kibana.host: "kibana:5601"
+setup.dashboards.enabled: false
+
+output.kafka:
+  enabled: false
+  ssl.enabled: false
+  hosts: "kafka:9092"
+  username: ""
+  password: ""
+  topic: 'es_filebeat_kafka'
+  version: "2.0.0"
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging.level: ${ES_FILEBEAT_LOGGING_LEVEL:warning}
+logging.metrics.enabled: false
+logging.metrics.period: 30s
+logging.json: false
