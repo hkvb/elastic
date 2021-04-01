@@ -8,11 +8,9 @@ RUN chmod -R 755 /vcw/bin/docker-entrypoint
 #USER journalbeat
 
 LABEL co.vcweb.schema-version="1.0" \
-      co.vcweb.label="hkvb/elastic/journalbeat - External Build" \
+      co.vcweb.label="${VCW_REALM}/elastic/journalbeat - External Build" \
       co.vcweb.description="The Official ElasticSearch Journalbeat image with amended entrypoint." \
-      co.vcweb.realm="hkvb" \
-      co.vcweb.library="elastic" \
-      co.vcweb.image="journalbeat" \
-      co.vcweb.flavor="" \
+      co.vcweb.realm="${VCW_REALM}" \
+      co.vcweb.image="elastic.journalbeat" \
       co.vcweb.tag="${VCW_TAG}" \
-      co.vcweb.maintainer="vcw@vcweb.co"
+      co.vcweb.maintainer="infometis@vcweb.co"
