@@ -5,7 +5,7 @@ services:
 # START SERVICE hkvb/elastic/metricbeat/overlay
   metricbeat:
     image: ${VCW_REGISTRY}hkvb/elastic.metricbeat:7.11.2
-    environment: ['ES_METRICBEAT_LOGGING_LEVEL=${VCW_STACK_METRICBEAT_ENVIRONMENT_LOGGING_LEVEL}','ES_METRICBEAT_OVERLAY=vcw_stack']
+    environment: ['ES_METRICBEAT_LOGGING_LEVEL=${VCW_STACK_METRICBEAT_ENVIRONMENT_LOGGING_LEVEL}','ES_METRICBEAT_OVERLAY=${VCW_STACK_GLOBAL_NETWORKLOCAL}']
     command: []
     volumes: ['/etc:/hostfs/etc:ro','${VCW_STACK_GLOBAL_STACKPREFIX}_config:/vcw/pwd','${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/usr/share/metricbeat/data']
     ports: []
