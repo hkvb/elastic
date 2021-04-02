@@ -16,23 +16,7 @@ The base stack of the APM Server.
 
 ### hkvb/elastic/filebeat
 
-A new entrypoint is added to the official image so the nodename and custom configuration can be picked up automatically.
-
-### hkvb/elastic/filebeat/file
-
-Filebeat stack and module pre-configured for file input.
-
-### hkvb/elastic/filebeat/file/sasl
-
-Filebeat stack and module pre-configured for file input and SASL authenticated output.
-
-### hkvb/elastic/filebeat/kafka
-
-Filebeat stack and module pre-configured for kafka input.
-
-### hkvb/elastic/filebeat/kafka/sasl
-
-Filebeat stack and module pre-configured for kafka input and SASL authenticated output.
+Filebeat stack.
 
 ### hkvb/elastic/heartbeat
 
@@ -42,13 +26,7 @@ Implements base Heartbeat stack and module.
 
 ### hkvb/elastic/journalbeat
 
-A new entrypoint is added to the official image so the nodename and custom configuration can be picked up automatically.
-
 Implements base Journalbeat stack and module.
-
-### hkvb/elastic/journalbeat/sasl
-
-Implements Journalbeat stack and module pre-configured for SASL authenticated output.
 
 ### hkvb/elastic/metricbeat
 
