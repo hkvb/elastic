@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_elastic_filebeat__$1"
+prefix="vcw_module_hkvb_elastic_filebeat__$1"
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_elastic_filebeat__filebeat_config
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_elastic_filebeat__filebeat_volume
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_config" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_elastic_filebeat__filebeat_config:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/elastic/filebeat/_module/volumes/filebeat_config/* /vcw/pwd
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint:/vcw/bin ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/elastic/filebeat/_module/volumes/filebeat_entrypoint/* /vcw/bin
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume:/vcw/ingest ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/elastic/filebeat/_module/volumes/filebeat_ingest_volume.tar
+fi

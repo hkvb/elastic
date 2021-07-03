@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+  # START MODULE CONFIGURATION
+DOLLAR='$'
+export VCW_MODULE_PACKAGES="\
+filebeat:hkvb/elastic/filebeat"
+# END MODULE CONFIGURATION
+
+# START CONFIGURATION
+export FILEBEAT_MODULE_FILEBEAT_FILEPATHS="/hostfs/var/lib/docker/containers/*/*.json"
+export FILEBEAT_MODULE_FILEBEAT_FILEPATHS_MAPPING=",'/var/lib/docker/containers:/hostfs/var/lib/docker/containers:rw'"
+export FILEBEAT_MODULE_FILEBEAT_LOGGING_LEVEL="warning"
+export FILEBEAT_MODULE_FILEBEAT_DEPLOY_MODE="replicated"
+export FILEBEAT_MODULE_FILEBEAT_MEMORY_LIMIT="128m"
+export FILEBEAT_MODULE_FILEBEAT_MEMORY_RESERVED="8m"
+# END CONFIGURATION

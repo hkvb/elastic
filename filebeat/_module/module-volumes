@@ -1,0 +1,4 @@
+filebeat_config
+filebeat_entrypoint
+filebeat_volume
+filebeat_ingest_volume

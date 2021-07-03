@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_elastic_filebeat__$1"
+prefix="vcw_module_hkvb_elastic_filebeat__$1"
+
+executionplane --silent docker container prune --force
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_config" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_filebeat__filebeat_config"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_filebeat__filebeat_config")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_filebeat__filebeat_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_filebeat__filebeat_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi

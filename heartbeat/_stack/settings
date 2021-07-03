@@ -7,11 +7,13 @@ export VCW_STACK_GLOBAL_STACKNAMES="heartbeat"
 export VCW_STACK_GLOBAL_BOOTSTACKS=""
 export VCW_STACK_GLOBAL_RUNSTACKS="heartbeat"
 export VCW_STACK_GLOBAL_VOLUME_LIST="\
-${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config_volume,\
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config,\
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_entrypoint,\
 ${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_data_volume,\
 ${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_monitors_volume"
 export VCW_STACK_GLOBAL_VOLUME_INITIALISED="\
-${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config_volume:/vcw/pwd,\
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config:/vcw/pwd, \
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_entrypoint:/vcw/bin,\
 ${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_monitors_volume:/usr/share/heartbeat/monitors.d"
 # END CONFIGURATION
 
@@ -27,16 +29,19 @@ $VCW_STACK_HEARTBEAT_NETWORKS,\
 $VCW_STACK_GLOBAL_VOLUMES,\
 $VCW_STACK_GLOBAL_NETWORKS'
 export VCW_STACK_GLOBAL_SERVICE_NAME="heartbeat"
-export VCW_STACK_GLOBAL_IMAGE_NAME="hkvb/elastic.heartbeat"
+export VCW_STACK_GLOBAL_IMAGE_NAME="docker.elastic.co/beats/heartbeat"
+export VCW_STACK_METRICBEAT_COMMAND="/vcw/bin/docker-entrypoint"
 export VCW_STACK_HEARTBEAT_ENVIRONMENT="'ES_HEARTBEAT_LOGGING_LEVEL=${DOLLAR}{VCW_STACK_HEARTBEAT_MODULE_LOGGING_LEVEL}'"
 export VCW_STACK_HEARTBEAT_VOLUMES="\
 '/etc:/hostfs/etc:ro',\
-'${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config_volume:/vcw/pwd',\
+'${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config:/vcw/pwd',\
+'${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_entrypoint:/vcw/bin',\
 '${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/usr/share/heartbeat/data',\
 '${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_monitors_volume:/usr/share/heartbeat/monitors.d'"
 export VCW_STACK_HEARTBEAT_NETWORKS="${DOLLAR}{VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay"
 export VCW_STACK_GLOBAL_VOLUMES="\
-${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config_volume: { external: true },\
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_config: { external: true },\
+${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_entrypoint: { external: true },\
 ${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_data_volume: { external: true },\
 ${DOLLAR}{VCW_STACK_GLOBAL_STACKPREFIX}_monitors_volume: { external: true }"
 export VCW_STACK_GLOBAL_NETWORKS="${DOLLAR}{VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }"

@@ -20,8 +20,6 @@ Filebeat stack.
 
 ### hkvb/elastic/heartbeat
 
-A new entrypoint is added to the official image so the nodename and custom configuration can be picked up automatically.
-
 Implements base Heartbeat stack and module.
 
 ### hkvb/elastic/journalbeat
@@ -66,4 +64,4 @@ Implements a standard url mounted ElasticSearch stack and module configured for 
 
 ## Version
 
-7.9.2
+7.11.2
