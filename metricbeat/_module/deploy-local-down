@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_elastic_metricbeat__$1"
+prefix="vcw_module_hkvb_elastic_metricbeat__$1"
+
+executionplane --silent docker container prune --force
+
+if [[ "vcw_module_hkvb_elastic_metricbeat__metrics_config" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_metricbeat__metrics_config"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_metricbeat__metrics_config")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_metricbeat__metrics_entrypoint" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_metricbeat__metrics_entrypoint"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_metricbeat__metrics_entrypoint")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_metricbeat__metrics_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_metricbeat__metrics_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_metricbeat__metrics_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi

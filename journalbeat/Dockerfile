@@ -1,3 +1,4 @@
+# architectures: linux/amd64
 FROM docker.elastic.co/beats/journalbeat:7.11.2
 
 USER root

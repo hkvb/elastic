@@ -30,8 +30,6 @@ Implements base Journalbeat stack and module.
 
 ### hkvb/elastic/metricbeat
 
-A new entrypoint is added to the official image so the nodename and custom configuration can be picked up automatically.
-
 Implements base MetricBeat stack and module.
 
 ### hkvb/elastic/metricbeat/node
