@@ -1,0 +1,26 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/elastic/search/rest
+  elasticsearch_rest:
+    image: ${VCW_REGISTRY}hkvb/elastic.search.rest:7.11.2
+    environment: ['VCW_STACK_STATIC_REST_BASE_API_LOGGING=${REST_ENVIRONMENT_REST_BASE_CURL_LOGGING}','REST_BASE_PROTOCOL=${REST_ENVIRONMENT_REST_ELASTICSEARCH_PROTOCOL}','REST_BASE_HOST=${REST_ENVIRONMENT_REST_ELASTICSEARCH_HOST}','REST_BASE_PORT=${REST_ENVIRONMENT_REST_ELASTICSEARCH_PORT}','REST_BASE_URLPREFIX=${REST_ENVIRONMENT_REST_ELASTICSEARCH_PREFIX}']
+    command: [${REST_COMMAND}]
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/vcw/pwd'${REST_VOLUMES_MAPPINGS}]
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: ${REST_DEPLOY_MODE}
+      resources:
+        limits:
+          memory: '${REST_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${REST_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+      restart_policy: { condition: none }
+${REST_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/elastic/search/rest
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

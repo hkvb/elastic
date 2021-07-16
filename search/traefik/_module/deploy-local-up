@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_elastic_search_traefik__$1"
+prefix="vcw_module_hkvb_elastic_search_traefik__$1"
+
+if [[ "vcw_module_hkvb_elastic_search_traefik__elastic_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_elastic_search_traefik__elastic_volume
+fi
