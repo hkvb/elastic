@@ -17,6 +17,7 @@ services:
           memory: '${JOURNAL_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
           memory: '${JOURNAL_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+    user: root
 ${JOURNAL_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/elastic/journalbeat
 
