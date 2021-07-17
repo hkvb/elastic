@@ -26,7 +26,3 @@ fi
 if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint" == "$prefix"* ]] ; then
 	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_elastic_filebeat__filebeat_entrypoint:/vcw/bin ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/elastic/filebeat/_module/volumes/filebeat_entrypoint/* /vcw/bin
 fi
-
-if [[ "vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_elastic_filebeat__filebeat_ingest_volume:/vcw/ingest ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/elastic/filebeat/_module/volumes/filebeat_ingest_volume.tar
-fi
